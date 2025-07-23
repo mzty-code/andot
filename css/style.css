@@ -1,0 +1,962 @@
+@charset "UTF-8";
+
+/*
+フェード表示させる要素に使用するためのクラス
+*/
+.fadein {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s;
+}
+
+a {
+  text-decoration: none;
+  color: #F7F1EA;
+}
+
+li {
+  list-style: none;
+}
+
+/* body */
+body {
+  font-family: "Shippori Mincho", serif;
+  background-image: url(../img/andot-banner1.png);
+  background-size: 100%;
+}
+
+/* header */
+header {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  align-items: center;
+  z-index: 30;
+}
+
+header img {
+  width: 200px;
+  padding-right: 5px;
+}
+
+h1 {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  display: flex;
+  align-items: end;
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* header-right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* .tell と .toggle-btn の間のスペース */
+  margin-left: auto;
+  padding-right: 30px;
+}
+
+/* .tell 内 */
+.tell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: static;
+  /* 絶対位置を解除 */
+}
+
+.tell img {
+  width: 40px;
+}
+
+.tell .num img {
+  width: 20px;
+}
+
+.tell .num {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  line-height: 1;
+  font-size: 20px;
+}
+
+/* header toggle-btn */
+header .toggle-btn {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+header .toggle-btn span {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: rgb(2, 78, 104);
+  transition: all 0.5s;
+}
+
+header .toggle-btn span:nth-child(1) {
+  top: 25%;
+}
+
+header .toggle-btn span:nth-child(2) {
+  top: 50%;
+}
+
+header .toggle-btn span:nth-child(3) {
+  top: 75%;
+}
+
+/* header navi */
+
+header .navimenu {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(2, 78, 104, 0.7);
+  color: #F7F1EA;
+  opacity: 0;
+  transition: all 0.5s;
+  margin-bottom: 60px;
+  z-index: 15;
+}
+
+header .snsmenu {
+  position: fixed;
+  left: -300px;
+  top: 300px;
+  width: 300px;
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: 15;
+}
+
+header .navimenu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px;
+  margin-bottom: 30px;
+}
+
+header .navimenu a {
+  display: block;
+  color: rgb(247, 241, 234);
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+header .snsmenu ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .snsmenu img {
+  width: 40px;
+  z-index: 20;
+}
+
+header .snsmenu li {
+  padding-right: 15px;
+}
+
+header #mask {
+  opacity: 0;
+}
+
+/* open header */
+.open nav a:hover {
+  opacity: 0.7;
+}
+
+.open .navimenu {
+  left: 0;
+  opacity: 1;
+}
+
+.open .snsmenu {
+  left: 0;
+  opacity: 1;
+}
+
+.open #mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(74, 90, 106, 0.8);
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.open .toggle-btn span {
+  background-color: rgb(247, 241, 234);
+}
+
+.open .toggle-btn span:nth-child(1) {
+  top: 50%;
+  transform: rotate(-315deg);
+}
+
+.open .toggle-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.open .toggle-btn span:nth-child(3) {
+  top: 50%;
+  transform: rotate(315deg);
+}
+
+/* main */
+main {
+  padding-top: 120px;
+  /* ヘッダーの高さに合わせる */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 50px 0;
+  color: rgb(247, 241, 234);
+}
+
+/* top */
+#top {
+  z-index: 30;
+}
+
+/* text・imgとtextに分けるためinnerクラス追加 */
+#top .inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+  /* 間隔 */
+  flex-wrap: wrap;
+  /* 画面が狭いときに折り返したいなら */
+  z-index: 20;
+  height: 100vh;
+  background-image: url(../img/takahiro-yagi.png);
+  background-size: 100%;
+}
+
+/* 自分磨きの第一歩へようこそ */
+#top .text {
+  color: rgb(2, 78, 104);
+}
+
+#top .text h2 {
+  font-size: 55px;
+  font-weight: bold;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  text-shadow: 0 0 0 4px rgb(0, 0, 0);
+
+}
+
+#top .text h2 span {
+  padding-left: 150px;
+}
+
+#top .text h3 {
+  font-size: 30px;
+  font-weight: normal;
+  padding: 2% 5%;
+  margin-top: 100px;
+  display: inline-block;
+  position: absolute;
+  top: 60%;
+  left: 0%;
+  background-color: rgb(255, 255, 255, 0.6);
+}
+
+#top .text h3 span {
+  font-weight: bold;
+}
+
+#top .text {
+  flex: 1 1 45%;
+  /* 画面に応じて大きさ調整 */
+}
+
+/* こんな方は&and.にお任せください */
+
+#top article {
+  padding: 80px 0;
+  /* 余白 */
+  background-color: rgb(2, 78, 104);
+  text-align: center;
+}
+
+#top article .problems {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(247, 241, 234);
+  margin-bottom: 50px;
+}
+
+#top article .problems span {
+  color: rgb(227, 180, 71);
+}
+
+#top article ul {
+  display: inline-block;
+  /* ulを中央寄せしたまま幅を持たせる */
+  text-align: left;
+  /* ulの中身は左寄せ */
+  margin: 20px auto 0;
+  /* 上に少し余白 */
+}
+
+#top article ul li {
+  display: flex;
+  align-items: center;
+  /* 縦の中央揃え */
+  /* 横の中央揃え */
+  gap: 8px;
+  /* 画像と文字の間に隙間 */
+  margin-bottom: 30px;
+  /* リスト間の余白（任意） */
+  color: rgb(247, 241, 234);
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* 口コミ */
+#reviews {
+  padding: 80px 0;
+  /* 余白 */
+  background-image: url(../img/andot-banner1.png);
+  background-size: 100%;
+  color: rgb(74, 90, 106);
+}
+
+#reviews .section-title {
+  color: rgb(74, 90, 106);
+}
+
+/* アンドットの強みセクション */
+#strengths {
+  padding: 80px 0;
+  background-image: url(../img/andot-banner1.png);
+  background-size: cover;
+  color: rgb(74, 90, 106);
+  text-align: center;
+}
+
+/* セクションタイトル */
+#strengths .section-title {
+  color: rgb(74, 90, 106);
+}
+
+/* 左右アニメーション */
+.strengths-item.left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.3s ease;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.strengths-item.left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.strengths-item.right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.3s ease;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.strengths-item.right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 初期状態の幅 */
+
+/* ホバーしたら幅を広げる */
+.strengths-item.left:hover,
+.strengths-item.right:hover {
+  width: 80%;
+}
+
+.strengths-item {
+  background-color: rgb(74, 90, 106);
+  width: 50%;
+  height: 200px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.4s ease;
+  color: #fff;
+}
+
+/* 画像サイズ */
+.strengths-item img {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/* タイトル */
+.strengths-item h4 {
+  font-size: 25px;
+  font-weight: normal;
+  padding: 20px 0;
+}
+
+/* 詳細の中の見出し */
+.detail h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 詳細部分 */
+
+.strengths-item .detail {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+  padding: 20px;
+  color: #fff;
+  text-align: left;
+  z-index: 1;
+}
+
+.strengths-item:hover .detail {
+  opacity: 1;
+}
+
+/* left の時は右に伸びる */
+.strengths-item.left:hover .detail {
+  right: 0;
+  width: 70%;
+}
+
+/* right の時は左に伸びる */
+.strengths-item.right:hover .detail {
+  right: 0;
+  width: 70%;
+}
+
+/* detailの中のテキスト */
+.detail h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.detail p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* 動画セクション */
+#movie {
+  background-color: rgb(74, 90, 106);
+}
+
+/* 施術例紹介 */
+#case-study {
+  padding: 50px 0;
+  /* 余白 */
+  background-color: rgb(74, 90, 106);
+  color: rgb(247, 241, 234);
+}
+
+#case-study .section-title {
+  padding-top: 50px;
+}
+
+.example {
+  font-size: 20px;
+  font-weight: normal;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.slick-area li {
+  text-align: center;
+}
+
+.slick-area li .img {
+  display: flex;
+  justify-content: center;
+  padding: 0 50px;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.slick-area li .img p {
+  padding: 20px 0;
+}
+
+.slick-area li img {
+  width: 300px;
+  height: auto;
+  padding: 0 20px;
+}
+
+/* before afterスライダー */
+.before_after_slider {
+  position: relative;
+  overflow: hidden;
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+.before_after_slider .box_after,
+.before_after_slider .box_before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.before_after_slider .box_after img,
+.before_after_slider .box_before img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.before_after_slider .box_before {
+  z-index: 2;
+  width: 50%;
+  overflow: hidden;
+}
+
+.before_after_slider .slider_range {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 255, 0, 0.3);
+  opacity: 1;
+  cursor: col-resize;
+}
+
+.slider_range {
+  z-index: 4;
+  position: absolute;
+  bottom: 1;
+  left: 0;
+  transform: none;
+  width: 100%;
+  height: 40px;
+  /* この高さは残す。つまみやすさのため */
+  cursor: col-resize;
+  -webkit-appearance: none;
+  /* デフォルトの見た目を消す（Chrome/Safari用） */
+  appearance: none;
+  /* 標準 */
+  background: rgba(255, 255, 255, 0.3);
+  /* 白っぽい */
+}
+
+
+/* スリック */
+.slick-area {
+  max-width: 1000px;
+  margin: 0 auto;
+  /* 中央寄せ */
+  padding-bottom: 10px;
+}
+
+.slick-slide {
+  padding: 5px;
+  text-align: center;
+}
+
+.slick-slide li {
+  text-align: center;
+}
+
+/* ドット */
+.slick-dots {
+  display: inline-block;
+  margin: 0 5px;
+  bottom: -10px;
+  /* 位置を下に */
+  text-align: center;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: rgba(227, 180, 71, 0.6);
+  opacity: 1;
+}
+
+.slick-dots li.slick-active button:before {
+  color: rgb(227, 180, 71);
+  /* デフォルトの色 */
+}
+
+/* Q&A・料金表・SNS */
+#content {
+  background-image: url(../img/andot-banner1.png);
+  background-size: 100%;
+  color: rgba(74, 90, 106);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* 間隔 */
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+#content .section-title {
+  color: rgba(74, 90, 106);
+}
+
+#content img {
+  width: 40px;
+  height: 40px;
+}
+
+/* ====== モーダル共通 ====== */
+
+/* オーバーレイ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(74, 90, 106, 0.8);
+  z-index: 1000;
+}
+
+/* モーダル本体 */
+.modal-content {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(247, 241, 234);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  z-index: 1001;
+}
+
+/* 閉じるボタン */
+.modal-close {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  color: rgb(74, 90, 106);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+/* ====== Q&A セクション ====== */
+
+/* .qa {
+  flex: 1;
+  max-width: 300px;
+  min-height: 200px; */
+  /* 必要に応じて */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+} */
+ .qa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* 高さ方向はお好みで */
+  gap: 15px; /* 両者の間にスペースを入れる */
+}
+
+.qa-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.qa .section-title {
+  text-align: left;
+  padding-left: 15px;
+}
+
+/* ボタン */
+.qa-btn {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.qa-btn .btn {
+  display: inline-block;
+  background: #D9D9D9;
+  color: rgb(74, 90, 106);
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 40px;
+  font-weight: normal;
+  transition: 0.3s;
+  width: 250px;
+  /* ←お好みで調整 */
+  text-align: center;
+  /* 中央寄せ */
+}
+
+.qa-btn .btn:hover {
+  color: rgba(74, 90, 106, 0.6);
+}
+
+/* ====== Q&A の中のリスト ====== */
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-content li {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.modal-content h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: flex-start;
+  /* ← 上揃え */
+  ;
+  gap: 8px;
+}
+
+.modal-content h4 img {
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.modal-content p {
+  font-size: 14px;
+  line-height: 1.8;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-left: 0;
+  /* ← 左マージンは不要になる */
+}
+
+.modal-content p img {
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+/* 料金表・SNS */
+.contents {
+  flex: 1;
+  max-width: 300px;
+  height: 200px;
+  /* `.qa` と同じぐらいに */
+  display: flex;
+  flex-direction: column;
+}
+
+.contents .section-title {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.contents .section-title.sns-title {
+  margin-top: 50px;
+  /* 上はそのまま */
+  margin-bottom: 10px;
+  /* 下を詰める */
+}
+
+/* ご予約についてボタン */
+.reservation-btn {
+  background-color: rgb(227, 180, 71);
+  color: rgb(74, 90, 106);
+  font-size: 20px;
+  padding: 20px 30px;
+  font-weight: normal;
+  border-radius: 20px;
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  /* ←ここ重要 */
+  max-width: 100%;
+}
+
+/* SNSメニュー */
+.sns-list {
+  display: flex;
+  justify-content: left;
+  gap: 30px;
+  /* アイコン間の余白 */
+  margin-bottom: 30px;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.sns-list li a img {
+  width: 60px !important;
+  /* ←ここでサイズ指定 */
+  height: 60px !important;
+  transition: transform 0.3s ease;
+}
+
+.sns-list li a img:hover {
+  transform: scale(1.1);
+  /* ホバーで少し大きくする */
+}
+
+/* access */
+#access {
+  background-color: rgb(74, 90, 106);
+
+}
+
+#access .section-title {
+  padding: 50px 0;
+  text-align: center;
+}
+
+#access .map {
+  text-align: center;
+}
+
+address {
+  padding: 20px;
+  color: rgb(247, 241, 234);
+  text-align: center;
+}
+
+#access p {
+  color: rgb(247, 241, 234);
+  text-align: center;
+}
+
+.place {
+  display: flex;
+  justify-content: center;
+  color: rgb(247, 241, 234);
+  font-weight: normal;
+  gap: 20px;
+}
+
+.place img {
+  width: 200px;
+}
+
+.foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* ← これで上下中央揃え */
+  gap: 40px;
+  /* 間隔調整 */
+  flex-wrap: wrap;
+  /* スマホで折り返せるように */
+  padding: 50px 0;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+}
+
+#access .time .section-title {
+  padding: 10px 0;
+  /* 今50pxくらいなら小さめに */
+  font-size: 20px;
+  margin-bottom: 5px;
+  /* 必要ならこちらでも調整 */
+}
+
+.time p {
+  font-size: 20px;
+  margin: 5px 0;
+  /* デフォルトの margin を調整 */
+}
+
+.link {
+  margin-left: 0;
+  /* これを必ず確認 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+}
+
+.link .reservation-btn {
+  margin-top: 50px;
+  /* 必要ならこれも */
+  display: inline-block;
+}
+
+/* footer */
+footer {
+  background-color: rgb(74, 90, 106);
+}
+
+footer p {
+  font-size: 8px;
+  text-align: center;
+  color: rgb(247, 241, 234);
+}
