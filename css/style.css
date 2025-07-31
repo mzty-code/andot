@@ -596,8 +596,7 @@ main {
   background-size: cover;
   background-position: center;
   text-align: center;
-  text-shadow: 1px 1px 2px rgb(74, 90, 106);
-  color: rgb(247, 241, 234);
+  color: rgb(74, 90, 106);
   z-index: 0;
 }
 
@@ -624,10 +623,12 @@ main {
 
 #case-study .section-title {
   padding-top: 50px;
+  color: rgb(74, 90, 106);
 }
 
 .example {
   font-size: 20px;
+  color: rgb(74, 90, 106);
   font-weight: normal;
   padding: 20px 0;
   text-align: center;
