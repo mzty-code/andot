@@ -84,19 +84,21 @@ h1 {
 }
 
 .tell a {
+  display: inline-block;
   display: flex;
   align-items: center;
   /* 縦方向中央揃え */
   color: rgb(2, 78, 104);
   font-size: 20px;
-  background-color: rgba(247, 241, 234, 0.5);
+  background-color: rgba(74, 90, 106, 0.1);
+  border: rgb(90, 106, 0.8);
   border-radius: 10px;
   padding: 10px 20px;
   transition: transform 0.3s ease;
+  width: 300px;
 }
 
 .tell a:hover {
-  background-color: rgba(247, 241, 234);
   transform: scale(1.1);
 }
 
