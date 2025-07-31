@@ -98,6 +98,28 @@ $(function () {
     $(this).siblings('.box_before').css('width', value + '%');
   });
 
+
+  /*=================================================
+    フェードインリスト
+    ===================================================*/
+    $(document).ready(function () {
+    function showOnScroll() {
+      $('.fade-list li').each(function (i) {
+        const bottom_of_element = $(this).offset().top + $(this).outerHeight() / 4;
+        const bottom_of_window = $(window).scrollTop() + $(window).height();
+
+        if (bottom_of_window > bottom_of_element) {
+          setTimeout(() => {
+            $(this).addClass('show');
+          }, i * 200); // 200msずつ遅らせて順番に表示
+        }
+      });
+    }
+
+    showOnScroll(); // 初期表示でもチェック
+    $(window).on('scroll', showOnScroll);
+  });
+
 });
 
 
