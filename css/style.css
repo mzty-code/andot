@@ -847,11 +847,11 @@ main {
   gap: 10px;
   /* 両者の間にスペースを入れる */
   height: 100%;
+  margin: 50px 0;
 }
 
 .qa-btns {
   display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
@@ -872,8 +872,8 @@ main {
   background: rgb(217, 217, 217);
   color: rgb(74, 90, 106);
   text-decoration: none;
-  padding: 15px 20px;
-  border-radius: 40px;
+  padding: 20px;
+  border-radius: 20px;
   font-weight: normal;
   transition: 0.3s;
   width: 250px;
@@ -932,11 +932,11 @@ main {
 .contents {
   flex: 1;
   max-width: 300px;
-  height: 100%;
+margin-bottom: 70px;
   /* `.qa` と同じぐらいに */
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: center;
 }
 
 .contents .section-title {
@@ -1037,6 +1037,49 @@ address {
   text-align: center;
 }
 
+.parking {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 30px;
+}
+
+.parking a button {
+  display: flex;          /* 横並びflexに */
+  align-items: center;    /* 縦方向中央揃え */
+  justify-content: center; /* 横方向中央揃え（必要なら） */
+  gap: 10px;              /* imgと文字の間の隙間 */
+  color: rgb(74, 90, 106);
+  padding: 20px;
+  width: 400px;
+  height: 80px;
+  background-image: url(../img/andot-banner1.png);
+  border-radius: 10px;
+  border: none;           /* もしボタン枠がいらなければ */
+  cursor: pointer;        /* クリック感アップ */
+  font-size: 16px;        /* 必要に応じて調整 */
+}
+
+.parking a button img {
+  width: 30px;
+  height: 30px;
+  /* margin-rightはgapで代替 */
+  margin: 0;
+  flex-shrink: 0; /* 画像が縮まらないように */
+}
+
+.parking a:hover{
+  opacity: 0.5;
+}
+
+.salon a button{
+  margin-top: 30px;
+  width: 800px;
+}
 .place {
   display: flex;
   justify-content: center;
