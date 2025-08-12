@@ -22,7 +22,10 @@ li {
 body {
   font-family: "Shippori Mincho", serif;
   background-image: url(../img/andot-banner1.png);
-  background-size: 100%;
+  background-size: contain;
+  /* 横全体が見える */
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 
 /* header */
@@ -42,7 +45,13 @@ header {
   background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
   align-items: center;
-  z-index: 30;
+  justify-content: space-between;
+  /* 左右に分ける */
+  padding: 0 10px;
+  /* 必要に応じて */
+  box-sizing: border-box;
+  z-index: 40;
+  /* 重なり順を前面に */
 }
 
 header img {
@@ -51,15 +60,12 @@ header img {
 }
 
 h1 {
-  position: absolute;
-  top: 8%;
-  left: 15px;
   display: flex;
   align-items: end;
   margin: 0;
   color: rgba(74, 90, 106, 0.8);
   font-size: 15px;
-  line-height: 15px;
+  line-height: 1px;
   font-weight: bold;
 }
 
@@ -67,10 +73,16 @@ h1 {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 25px;
   /* .tell と .toggle-btn の間のスペース */
   margin-left: auto;
   padding-right: 30px;
+  max-width: 60%;
+  /* 最大幅設定 */
+  flex-shrink: 1;
+  /* 幅が狭くなることを許可 */
+  overflow: hidden;
+  /* はみ出し防止 */
 }
 
 /* .tell 内 */
@@ -122,21 +134,29 @@ h1 {
 
 /* header toggle-btn */
 header .toggle-btn {
-  position: relative;
-  display: block;
   width: 50px;
   height: 50px;
   margin-right: 20px;
   cursor: pointer;
   z-index: 20;
+  position: relative;
+  /* spanのabsolute基準にする */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 header .toggle-btn span {
+  display: block;
   position: absolute;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   height: 3px;
+  width: 45px;
   background-color: rgb(2, 78, 104);
-  transition: all 0.5s;
+  transition: all 0.5s ease;
+  transform-origin: center;
+  /* 回転の基準を中央に */
 }
 
 header .toggle-btn span:nth-child(1) {
@@ -243,7 +263,7 @@ header #mask {
 
 .open .toggle-btn span:nth-child(1) {
   top: 50%;
-  transform: rotate(-315deg);
+  transform: translateX(-50%) rotate(45deg);
 }
 
 .open .toggle-btn span:nth-child(2) {
@@ -252,7 +272,7 @@ header #mask {
 
 .open .toggle-btn span:nth-child(3) {
   top: 50%;
-  transform: rotate(315deg);
+  transform: translateX(-50%) rotate(-45deg);
 }
 
 /* main */
@@ -286,7 +306,13 @@ main {
   z-index: 20;
   height: 100vh;
   background-image: url(../img/takahiro-yagi.png);
-  background-size: 100%;
+  background-position: center top;
+  /* ここがポイント */
+  background-repeat: no-repeat;
+  /* 繰り返しを防止 */
+  background-size: cover;
+  background-size: contain;
+  /* 横幅を優先して全体表示 */
 }
 
 /* 自分磨きの第一歩へようこそ */
@@ -310,7 +336,7 @@ main {
 #top .text h3 {
   font-size: 30px;
   font-weight: normal;
-  padding: 2% 5%;
+  padding: 2% 10%;
   margin-top: 100px;
   display: inline-block;
   position: absolute;
@@ -433,7 +459,7 @@ main {
   padding: 80px 0;
   /* 余白 */
   background-image: url(../img/andot-banner1.png);
-  background-size: 100%;
+  background-size: cover;
   color: rgb(74, 90, 106);
 }
 
@@ -761,7 +787,7 @@ main {
 /* Q&A・料金表・SNS */
 #content {
   background-image: url(../img/andot-banner1.png);
-  background-size: 100%;
+  background-size: cover;
   height: 100%;
   color: rgba(74, 90, 106);
   display: flex;
@@ -829,20 +855,10 @@ main {
 }
 
 /* ====== Q&A セクション ====== */
-
-/* .qa {
-  flex: 1;
-  max-width: 300px;
-  min-height: 200px; */
-/* 必要に応じて */
-/* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-} */
 .qa {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   /* 高さ方向はお好みで */
   gap: 10px;
   /* 両者の間にスペースを入れる */
@@ -852,6 +868,8 @@ main {
 
 .qa-btns {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -932,7 +950,7 @@ main {
 .contents {
   flex: 1;
   max-width: 300px;
-margin-bottom: 70px;
+  margin-bottom: 70px;
   /* `.qa` と同じぐらいに */
   display: flex;
   flex-direction: column;
@@ -997,8 +1015,9 @@ margin-bottom: 70px;
   background-position: center;
   z-index: 0;
   text-align: center;
-
+  padding: 0 30px;
 }
+
 #access::before {
   content: '';
   position: absolute;
@@ -1017,13 +1036,21 @@ margin-bottom: 70px;
   color: rgb(74, 90, 106);
   margin-top: 0;
 }
-#access > * {
+
+#access>* {
   position: relative;
   z-index: 1;
 }
 
 #access .map {
   text-align: center;
+}
+
+#access .map iframe {
+  max-width: 80%;
+  height: 600px;
+  border: none;
+  /* iframeの枠線を消す */
 }
 
 address {
@@ -1049,19 +1076,26 @@ address {
 }
 
 .parking a button {
-  display: flex;          /* 横並びflexに */
-  align-items: center;    /* 縦方向中央揃え */
-  justify-content: center; /* 横方向中央揃え（必要なら） */
-  gap: 10px;              /* imgと文字の間の隙間 */
+  display: flex;
+  /* 横並びflexに */
+  align-items: center;
+  /* 縦方向中央揃え */
+  justify-content: center;
+  /* 横方向中央揃え（必要なら） */
+  gap: 10px;
+  /* imgと文字の間の隙間 */
   color: rgb(74, 90, 106);
   padding: 20px;
   width: 400px;
   height: 80px;
   background-image: url(../img/andot-banner1.png);
   border-radius: 10px;
-  border: none;           /* もしボタン枠がいらなければ */
-  cursor: pointer;        /* クリック感アップ */
-  font-size: 16px;        /* 必要に応じて調整 */
+  border: none;
+  /* もしボタン枠がいらなければ */
+  cursor: pointer;
+  /* クリック感アップ */
+  font-size: 16px;
+  /* 必要に応じて調整 */
 }
 
 .parking a button img {
@@ -1069,17 +1103,19 @@ address {
   height: 30px;
   /* margin-rightはgapで代替 */
   margin: 0;
-  flex-shrink: 0; /* 画像が縮まらないように */
+  flex-shrink: 0;
+  /* 画像が縮まらないように */
 }
 
-.parking a:hover{
+.parking a:hover {
   opacity: 0.5;
 }
 
-.salon a button{
+.salon a button {
   margin-top: 30px;
   width: 800px;
 }
+
 .place {
   display: flex;
   justify-content: center;
@@ -1148,4 +1184,276 @@ footer p {
   font-size: 8px;
   text-align: center;
   color: rgb(247, 241, 234);
+}
+
+
+/* PC用のスタイル */
+@media (max-width: 1140px) {
+
+  /* 自分磨きの第一歩へようこそ */
+
+  #top .text h2 {
+    font-size: 45px;
+    top: 40%;
+    left: 5%;
+  }
+
+  #top .text h2 span {
+    padding-left: 150px;
+  }
+
+  /* アンドットの強みセクション */
+  .strengths-item {
+    width: 80%;
+    height: auto;
+    /* 高さ固定を外す */
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .strengths-item img {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 10px;
+  }
+
+  .strengths-item .detail {
+    width: 100% !important;
+    opacity: 1;
+    /* ホバーしなくても表示 */
+    order: 2;
+    padding: 15px;
+    background-color: rgba(247, 241, 234, 0.9);
+  }
+
+  /* ホバー拡張はオフにする（スマホではhoverできない） */
+  .strengths-item.left:hover,
+  .strengths-item.right:hover {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+/* スマホ用のスタイル */
+@media (max-width: 910px) {
+  header img {
+    width: 150px;
+  }
+
+  h1 {
+    font-size: 12px;
+    left: 10px;
+    top: 5%;
+  }
+
+  .header-right {
+    margin-left: 0;
+    padding-right: 5px;
+    gap: 10px;
+    max-width: calc(100% - 150px);
+    /* ロゴの幅を考慮 */
+    overflow: hidden;
+  }
+
+  .tell a,
+  .tell .num {
+    width: 200px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .tell img {
+    width: 30px;
+  }
+
+  .tell .num img {
+    width: 30px;
+  }
+
+  /* header toggle-btn */
+  header .toggle-btn {
+    width: 36px;
+    height: 36px;
+    margin-right: 15px;
+    /* 右に余白確保 */
+  }
+
+  header .toggle-btn span {
+    width: 30px;
+    /* 少し小さく */
+    height: 2px;
+    margin: 4px 0;
+  }
+
+  /* 自分磨きの第一歩へようこそ */
+  #top .text h2 {
+    font-size: 35px;
+    left: 3%;
+    top: 10%;
+  }
+
+  #top .text h2 span {
+    padding-left: 100px;
+  }
+
+  #top .text h3 {
+    font-size: 20px;
+    top: 50%;
+    left: 0%;
+    padding: 2% 3%;
+    width: calc(100% - 6%);
+    /* 幅を調整 */
+  }
+
+}
+
+@media (max-width: 768px) {
+  #top .text h3 {
+    font-size: 25px;
+    animation: slideInLeft 0.8s ease-out forwards;
+
+  }
+
+  .slick-area li .img {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .slick-area li img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 0;
+  }
+
+  .before_after_slider {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+
+  .before_after_slider {
+    width: 100%;
+    max-width: 300px;
+    /* 好きな最大幅 */
+    aspect-ratio: 4 / 3;
+    /* 元の比率 400x300なら4:3 */
+    height: auto;
+    /* 自動調整 */
+  }
+
+  .before_after_slider .box_after img,
+  .before_after_slider .box_before img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .salon a button {
+    width: 700px;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media(max-width: 600px) {
+  header img {
+    width: 120px;
+  }
+
+  h1 {
+    font-size: 10px;
+    left: 5px;
+    top: 3%;
+  }
+
+  .header-right {
+    padding-right: 5px;
+  }
+
+  /* 自分磨きの第一歩へようこそ */
+  #top .text h2 {
+    font-size: 25px;
+    top: 10%;
+    left: 4%;
+  }
+
+  #top .text h2 span {
+    padding-left: 60px;
+  }
+
+
+  /* アンドットの強みセクション */
+
+  .strengths-item {
+    width: 100%;
+  }
+
+  .strengths-item img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .strengths-item h4 {
+    font-size: 22px;
+  }
+
+  .detail h4 {
+    font-size: 18px;
+  }
+
+  .detail p {
+    font-size: 14px;
+  }
+
+  /* アクセスセクション */
+  #access .map iframe {
+    height: 250px;
+  }
+
+  .salon a button {
+    margin-top: 30px;
+    width: 500px;
+  }
+}
+
+@media(max-width: 510px) {
+
+  .tell a,
+  .tell .num {
+    width: 150px;
+    font-size: 10px;
+    padding: 5px;
+  }
+
+  .tell img {
+    width: 25px;
+  }
+
+  .tell .num img {
+    width: 25px;
+  }
+
+  
+#top article .problems {
+  font-size: 23px;
+}
+
+#top article .problems span {
+  font-size: 25px;
+}
+.salon a button {
+  width: 400px;
+}
 }
