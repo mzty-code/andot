@@ -1044,7 +1044,8 @@ main {
 
 #access .map {
   width: 100%;
-  max-width: 1000px; /* PC時の最大幅 */
+  max-width: 1000px;
+  /* PC時の最大幅 */
   text-align: center;
   margin: 0 auto;
 }
@@ -1253,7 +1254,7 @@ footer p {
     margin-left: 0;
     padding-right: 5px;
     gap: 10px;
-    max-width: calc(100% - 150px);
+    max-width: 80%; /* 余白が自然になるように割合に */
     /* ロゴの幅を考慮 */
     overflow: hidden;
   }
@@ -1317,6 +1318,7 @@ footer p {
 
   }
 
+  /* スリックのレスポンシブ化 */
   .slick-area li .img {
     flex-direction: column;
     align-items: center;
@@ -1353,6 +1355,7 @@ footer p {
     height: 100%;
     object-fit: cover;
   }
+
   .salon a button {
     width: 700px;
   }
@@ -1448,15 +1451,16 @@ footer p {
     width: 25px;
   }
 
-  
-#top article .problems {
-  font-size: 23px;
-}
 
-#top article .problems span {
-  font-size: 25px;
-}
-.salon a button {
-  width: 400px;
-}
+  #top article .problems {
+    font-size: 23px;
+  }
+
+  #top article .problems span {
+    font-size: 25px;
+  }
+
+  .salon a button {
+    width: 400px;
+  }
 }
