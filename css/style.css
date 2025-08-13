@@ -1482,7 +1482,13 @@ footer p {
 }
 }
   @media(max-width: 440px) {
-
+    h1 {
+    font-size: 5px;
+    line-height: 5px;
+  }
+    header img {
+    width: 80px;
+  }
     .header-right {
     padding-right: 15px;
     /* SPは20px */
