@@ -343,10 +343,12 @@ main {
   top: 60%;
   left: 0%;
   background-color: rgb(255, 255, 255, 0.6);
+  flex-wrap: nowrap;
 }
 
 #top .text h3 span {
   font-weight: bold;
+  flex-wrap: nowrap;
 }
 
 #top .text {
@@ -1195,7 +1197,6 @@ footer p {
 @media (max-width: 1140px) {
 
   /* 自分磨きの第一歩へようこそ */
-
   #top .text h2 {
     font-size: 45px;
     top: 40%;
@@ -1252,7 +1253,8 @@ footer p {
   .header-right {
     padding-right: 25px;
     gap: 10px;
-    max-width: 95%; /* 余白が自然になるように割合に */
+    max-width: 95%;
+    /* 余白が自然になるように割合に */
     /* ロゴの幅を考慮 */
     overflow: hidden;
   }
@@ -1313,7 +1315,6 @@ footer p {
   #top .text h3 {
     font-size: 25px;
     animation: slideInLeft 0.8s ease-out forwards;
-
   }
 
   /* スリックのレスポンシブ化 */
@@ -1383,7 +1384,8 @@ footer p {
   }
 
   .header-right {
-    padding-right: 20px;  /* SPは20px */
+    padding-right: 20px;
+    /* SPは20px */
   }
 
   /* 自分磨きの第一歩へようこそ */
@@ -1433,9 +1435,13 @@ footer p {
 }
 
 @media(max-width: 510px) {
-  h1{
-    font-size: 8px;
-    line-height: 8px;
+  h1 {
+    font-size: 7px;
+    line-height: 7px;
+  }
+
+  header img {
+    width: 100px;
   }
 
   .tell a,
@@ -1453,7 +1459,11 @@ footer p {
     width: 25px;
   }
 
+  .section-title{
+    font-size: 23px;
+  }
 
+/* お任せください */
   #top article .problems {
     font-size: 23px;
   }
@@ -1465,4 +1475,32 @@ footer p {
   .salon a button {
     width: 400px;
   }
+/* Q&Aセクション */
+  .qa .section-title {
+  text-align: center;
+  padding-left: 0;
 }
+}
+  @media(max-width: 440px) {
+
+    .header-right {
+    padding-right: 15px;
+    /* SPは20px */
+  }
+
+    /* 自分磨きの第一歩へようこそ */
+    #top .text h2 {
+      font-size: 20px;
+      top: 10%;
+      left: 4%;
+    }
+
+    #top .text h2 span {
+      padding-left: 50px;
+    }
+
+    #top .text h3{
+      font-size: 20px;
+    }
+
+  }
