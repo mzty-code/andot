@@ -57,6 +57,7 @@ header {
 header img {
   width: 200px;
   padding-right: 5px;
+  margin-left: 10px;
 }
 
 h1 {
@@ -67,6 +68,9 @@ h1 {
   font-size: 15px;
   line-height: 15px;
   font-weight: bold;
+}
+h1 img{
+  height: 110px;
 }
 
 /* header-right */
@@ -101,7 +105,7 @@ h1 {
   align-items: center;
   /* 縦方向中央揃え */
   color: rgb(2, 78, 104);
-  font-size: 20px;
+  font-size: 18px;
   background-color: rgba(74, 90, 106, 0.1);
   border: rgb(90, 106, 0.8);
   border-radius: 10px;
@@ -129,14 +133,14 @@ h1 {
   align-items: center;
   color: rgb(2, 78, 104);
   line-height: 1;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* header toggle-btn */
 header .toggle-btn {
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+  margin-right: 10px;
   cursor: pointer;
   z-index: 20;
   position: relative;
@@ -386,6 +390,8 @@ main {
 
 
 #top article .problems {
+  white-space: nowrap;
+  /* 改行禁止 */
   font-size: 30px;
   font-weight: bold;
   color: rgb(247, 241, 234);
@@ -396,10 +402,15 @@ main {
 
 #top article .problems span {
   font-size: 35px;
+  display: inline-block;
+  /* width計算のため */
   font-weight: bold;
 }
 
 .fade-list li {
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 20px; /* 初期値は好みで調整 */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -1249,9 +1260,12 @@ footer p {
     font-size: 12px;
     line-height: 12px;
   }
+  h1 img{
+    height: 82px;
+  }
 
   .header-right {
-    padding-right: 25px;
+    padding-right: 10px;
     gap: 10px;
     max-width: 95%;
     /* 余白が自然になるように割合に */
@@ -1262,7 +1276,7 @@ footer p {
   .tell a,
   .tell .num {
     width: 200px;
-    font-size: 14px;
+    font-size: 12px;
     padding: 8px;
   }
 
@@ -1278,7 +1292,7 @@ footer p {
   header .toggle-btn {
     width: 36px;
     height: 36px;
-    margin-right: 15px;
+    margin-right: 8px;
     /* 右に余白確保 */
   }
 
@@ -1304,17 +1318,40 @@ footer p {
     font-size: 20px;
     top: 50%;
     left: 0%;
-    padding: 2% 3%;
+    padding: 1px 3%;
     width: calc(100% - 6%);
     /* 幅を調整 */
+  }
+  #top .inner{
+    height: 80vh;
   }
 
 }
 
 @media (max-width: 768px) {
+  
   #top .text h3 {
     font-size: 25px;
+    padding: 0;
     animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  /* お任せください */
+  #top article .problems{
+    white-space: nowrap;
+    font-size: 23px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+  #top article .problems span{
+    font-size: 25px;
+  }
+  #top article ul li {
+    font-size: 23px;
+  }
+  .fade-list img{
+    width: 23px;
+    height: 23px;
   }
 
   /* スリックのレスポンシブ化 */
@@ -1384,7 +1421,7 @@ footer p {
   }
 
   .header-right {
-    padding-right: 20px;
+    padding-right: 2px;
     /* SPは20px */
   }
 
@@ -1399,6 +1436,26 @@ footer p {
     padding-left: 60px;
   }
 
+    #top .inner{
+    height: 50vh;
+  }
+    /* お任せください */
+  #top article .problems{
+    white-space: nowrap;
+    font-size: 18px;
+    padding-top: 15px;
+    margin-bottom: 15px;
+  }
+  #top article .problems span{
+    font-size: 20px;
+  }
+  #top article ul li {
+    font-size: 18px;
+  }
+  .fade-list img{
+    width: 18px;
+    height: 18px;
+  }
 
   /* アンドットの強みセクション */
 
@@ -1439,9 +1496,16 @@ footer p {
     font-size: 7px;
     line-height: 7px;
   }
+  h1 img{
+    height: 60px;
+  }
 
   header img {
     width: 100px;
+    margin-left: 5px;
+  }
+  .toggle-btn{
+    margin-right: 5px;
   }
 
   .tell a,
@@ -1459,54 +1523,61 @@ footer p {
     width: 25px;
   }
 
-  .section-title{
+  .section-title {
     font-size: 23px;
   }
 
-/* お任せください */
-  #top article .problems {
-    font-size: 23px;
+  /* お任せください */
+  #top article .problems{
+    white-space: nowrap;
+    font-size: 15px;
   }
-
-  #top article .problems span {
-    font-size: 25px;
+  #top article .problems span{
+    font-size: 18px;
+  }
+  #top article ul li {
+    font-size: 15px;
+  }
+  .fade-list img{
+    width: 15px;
+    height: 15px;
   }
 
   .salon a button {
     width: 400px;
   }
-/* Q&Aセクション */
+
+  /* Q&Aセクション */
   .qa .section-title {
-  text-align: center;
-  padding-left: 0;
+    text-align: center;
+    padding-left: 0;
+  }
 }
-}
-  @media(max-width: 440px) {
-    h1 {
+
+@media(max-width: 440px) {
+  h1 {
     font-size: 5px;
     line-height: 5px;
   }
-    header img {
-    width: 80px;
-  }
-    .header-right {
-    padding-right: 15px;
+
+  .header-right {
+    padding-right: 8px;
     /* SPは20px */
   }
 
-    /* 自分磨きの第一歩へようこそ */
-    #top .text h2 {
-      font-size: 20px;
-      top: 10%;
-      left: 4%;
-    }
-
-    #top .text h2 span {
-      padding-left: 50px;
-    }
-
-    #top .text h3{
-      font-size: 20px;
-    }
-
+  /* 自分磨きの第一歩へようこそ */
+  #top .text h2 {
+    font-size: 20px;
+    top: 10%;
+    left: 4%;
   }
+
+  #top .text h2 span {
+    padding-left: 50px;
+  }
+
+  #top .text h3 {
+    font-size: 20px;
+  }
+
+}
