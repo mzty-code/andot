@@ -70,6 +70,7 @@ h1 {
   font-weight: bold;
 }
 h1 img{
+  width: auto;
   height: 110px;
 }
 
@@ -1103,7 +1104,7 @@ address {
   /* imgと文字の間の隙間 */
   color: rgb(74, 90, 106);
   padding: 20px;
-  width: 400px;
+  width: 350px;
   height: 80px;
   background-image: url(../img/andot-banner1.png);
   border-radius: 10px;
@@ -1142,7 +1143,7 @@ address {
 }
 
 .place img {
-  width: 200px;
+  width: 150px;
 }
 
 .foot {
@@ -1411,7 +1412,8 @@ footer p {
 
 @media(max-width: 600px) {
   header img {
-    width: 120px;
+    width: 140px;
+    margin-left: 3px;
   }
 
   h1 {
@@ -1421,7 +1423,7 @@ footer p {
   }
 
   .header-right {
-    padding-right: 2px;
+    padding-right: 0;
     /* SPは20px */
   }
 
@@ -1498,6 +1500,7 @@ footer p {
   }
   h1 img{
     height: 60px;
+    width: 110px;
   }
 
   header img {
@@ -1524,8 +1527,13 @@ footer p {
   }
 
   .section-title {
+    margin: 20px 0;
     font-size: 23px;
   }
+  /* 口コミ */
+#reviews{
+  padding: 20px 0;
+}
 
   /* お任せください */
   #top article .problems{
@@ -1544,7 +1552,7 @@ footer p {
   }
 
   .salon a button {
-    width: 400px;
+    width: 350px;
   }
 
   /* Q&Aセクション */
@@ -1558,11 +1566,6 @@ footer p {
   h1 {
     font-size: 5px;
     line-height: 5px;
-  }
-
-  .header-right {
-    padding-right: 8px;
-    /* SPは20px */
   }
 
   /* 自分磨きの第一歩へようこそ */
