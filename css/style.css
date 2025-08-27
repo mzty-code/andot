@@ -722,14 +722,15 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* 中央に固定配置 */
-  width: 350px;   /* 画像サイズを固定 */
-  height: 450px;  /* 画像サイズを固定 */
-  object-fit: contain; /* coverだと拡大に見えるので contain 推奨 */
+   width: 100%;   /* 枠にフィット */
+  height: 100%;  /* 枠にフィット */
+  object-fit: cover; /* 枠いっぱいに収める */
 }
 
 .before_after_slider .box_before {
   z-index: 2;
   width: 50%;  /* ← JSでここを可変させる */
+  transition: width 0.3s ease; /* スナップ時にアニメーション */
 }
 
 /* スライダー */

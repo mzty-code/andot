@@ -90,13 +90,24 @@ $(function () {
   $items.each(function () {
     observer.observe(this);
   });
+
   /*=================================================
     before afterスライダー
     ===================================================*/
   $('.slider_range').on('input change', function () {
-    const value = $(this).val();
-    $(this).siblings('.box_before').css('width', value + '%');
-  });
+  const value = $(this).val();
+  let snapValue;
+
+  if (value < 50) {
+    snapValue = 0;   // 左に寄せたら完全にBefore
+  } else {
+    snapValue = 100; // 右に寄せたら完全にAfter
+  }
+
+  $(this).val(snapValue); // スライダーの位置もスナップ
+  $(this).siblings('.box_before').css('width', snapValue + '%');
+});
+
 
 
   /*=================================================
