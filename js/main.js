@@ -13,12 +13,18 @@ $(function () {
   /*=================================================
   施術事例のスリック
   ===================================================*/
+  $('.slick-area').on('init', function (event, slick) {
+    // dotsの前後に矢印を移動
+    $(this).find('.slick-dots').prepend($(this).find('.slick-prev'));
+    $(this).find('.slick-dots').append($(this).find('.slick-next'));
+  });
+
   $('.slick-area').slick({
     centerMode: true,
     centerPadding: '40px',
-    slidesToShow: 1,           // スマホでも1枚見えるように
-    arrows: false,    // ← 矢印を消す
-    dots: true,       // ← ドットを表示する
+    slidesToShow: 1,
+    arrows: true,
+    dots: true,
     variableWidth: false,
     responsive: [
       {
@@ -49,71 +55,101 @@ $(function () {
   // モーダル型
   // ======================
 
-  $('.btn').on('click', function (e) {
-    e.preventDefault();
 
-    const target = $(this).data('target'); // ← data-target を取得
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault(); // ← これでTOPに戻る挙動を防ぐ
 
-    $('.modal-overlay').fadeIn();
-    $('.modal-content').hide();
-    $('.modal-content.' + target).fadeIn();
+    const target = btn.getAttribute('data-target');
+    const modal = document.querySelector(`.${target}`);
+    const overlay = document.querySelector('.modal-overlay');
+
+    if (modal) {
+      // QAセクションのように直接 .modal-content を開く場合も、
+      // Strengthsセクションのように .detail 内でも、どちらでも対応
+      const parentDetail = modal.closest('.detail');
+      if (parentDetail) parentDetail.style.display = 'block';
+
+      overlay.classList.add('active');
+      modal.classList.add('active');
+      modal.style.display = 'block'; // ← display:none 対策
+    }
   });
+});
 
-  $('.modal-overlay, .modal-close').on('click', function () {
-    $('.modal-content').fadeOut();
-    $('.modal-overlay').fadeOut();
+// 閉じる処理
+document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.detail').forEach(d => (d.style.display = 'none'));
+    document.querySelectorAll('.modal-content').forEach(m => {
+      m.classList.remove('active');
+      m.style.display = 'none';
+    });
+    document.querySelector('.modal-overlay').classList.remove('active');
   });
+});
+
+
+
+  // $('.btn').on('click', function (e) {
+  //   e.preventDefault();
+
+  //   const target = $(this).data('target'); // ← data-target を取得
+
+  //   $('.modal-overlay').fadeIn();
+  //   $('.modal-content').hide();
+  //   $('.modal-content.' + target).fadeIn();
+  // });
+
+  // $('.modal-overlay, .modal-close').on('click', function () {
+  //   $('.modal-content').fadeOut();
+  //   $('.modal-overlay').fadeOut();
+  // });
+
   /*=================================================
     アンドットの強み
     ===================================================*/
+  // const $items = $('.strengths-item');
+
+  // // 左右交互にクラスを付与
+  // $items.each(function (index) {
+  //   if (index % 2 === 0) {
+  //     $(this).addClass('left');
+  //   } else {
+  //     $(this).addClass('right');
+  //   }
+  // });
+
+  // // IntersectionObserver は jQueryにないのでそのまま使う
+  // const observer = new IntersectionObserver(function (entries) {
+  //   entries.forEach(function (entry) {
+  //     if (entry.isIntersecting) {
+  //       $(entry.target).addClass('show');
+  //       observer.unobserve(entry.target);
+  //     }
+  //   });
+  // }, { threshold: 0.2 });
+
+  // $items.each(function () {
+  //   observer.observe(this);
+  // });
   const $items = $('.strengths-item');
 
-  // 左右交互にクラスを付与
+  // 左右交互クラスだけ付ける
   $items.each(function (index) {
     if (index % 2 === 0) {
-      $(this).addClass('left');
+      $(this).addClass('left show'); // ← 最初からshowも追加
     } else {
-      $(this).addClass('right');
+      $(this).addClass('right show'); // ← 同上
     }
   });
-
-  // IntersectionObserver は jQueryにないのでそのまま使う
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        $(entry.target).addClass('show');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  $items.each(function () {
-    observer.observe(this);
-  });
-
-  /*=================================================
-    before afterスライダー
-    ===================================================*/
-  $('.slider_range').on('input change', function () {
-  const value = $(this).val();
-  let snapValue;
-
-  if (value < 50) {
-    snapValue = 0;   // 左に寄せたら完全にBefore
-  } else {
-    snapValue = 100; // 右に寄せたら完全にAfter
-  }
-
-  $(this).val(snapValue); // スライダーの位置もスナップ
-  $(this).siblings('.box_before').css('width', snapValue + '%');
-});
 
 
 
   /*=================================================
     フェードインリスト
     ===================================================*/
-    $(document).ready(function () {
+  $(document).ready(function () {
     function showOnScroll() {
       $('.fade-list li').each(function (i) {
         const bottom_of_element = $(this).offset().top + $(this).outerHeight() / 4;
@@ -131,29 +167,29 @@ $(function () {
     $(window).on('scroll', showOnScroll);
   });
 
- /*=================================================
-    スリックのレスポンシブ化
-    ===================================================*/
-    $('.slick-area').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  dots: true,
-  arrows: true,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2
+  /*=================================================
+     スリックのレスポンシブ化
+     ===================================================*/
+  $('.slick-area').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    dots: true,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1
+        }
       }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1
-      }
-    }
-  ]
-});
+    ]
+  });
 
 
 
